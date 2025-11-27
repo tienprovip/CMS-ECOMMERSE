@@ -1,5 +1,19 @@
+# ======================================
+# Node & Environment
+# ======================================
 node_modules
 # Keep environment variables out of version control
 .env
 
+# ======================================
+# Prisma
+# ======================================
+# Do NOT ignore migrations/ (should be committed)
+!/prisma/migrations
 /generated/prisma
+
+# ======================================
+# Build output
+# ======================================
+dist/
+build/
