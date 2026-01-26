@@ -1,7 +1,9 @@
 import { DashOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { Menu } from "antd";
 import Sider from "antd/es/layout/Sider";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 type Props = {};
 
@@ -25,15 +27,17 @@ const AppSidebar = (props: Props) => {
     navigate(`/${e.key}`);
   };
 
+  const { isDark } = useContext(ThemeContext);
+
   return (
     <Sider trigger={null} collapsible>
       <div className="text-xl text-blue-600 font-bold text-center py-5">
         ADMIN PANEL
       </div>
       <Menu
-        theme="dark"
+        theme={isDark ? "dark" : "light"}
         mode="inline"
-        defaultSelectedKeys={["1"]}
+        defaultSelectedKeys={["dashboard"]}
         items={items}
         className="h-screen"
         onClick={handleNavigate}
