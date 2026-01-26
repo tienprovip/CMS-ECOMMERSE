@@ -1,26 +1,30 @@
-import Sider from "antd/es/layout/Sider";
-import {
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
-import React from "react";
+import { DashOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { Menu } from "antd";
+import Sider from "antd/es/layout/Sider";
+import { useNavigate } from "react-router-dom";
 
 type Props = {};
 
-const items = [
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-  UserOutlined,
-].map((icon, index) => ({
-  key: String(index + 1),
-  icon: React.createElement(icon),
-  label: `nav ${index + 1}`,
-}));
-
 const AppSidebar = (props: Props) => {
+  const items = [
+    {
+      key: "dashboard",
+      icon: <DashOutlined />,
+      label: "Dashboard",
+    },
+    {
+      key: "products",
+      icon: <ShoppingCartOutlined />,
+      label: "Products",
+    },
+  ];
+
+  const navigate = useNavigate();
+
+  const handleNavigate = (e: any) => {
+    navigate(`/${e.key}`);
+  };
+
   return (
     <Sider trigger={null} collapsible>
       <div className="text-xl text-blue-600 font-bold text-center py-5">
@@ -32,6 +36,7 @@ const AppSidebar = (props: Props) => {
         defaultSelectedKeys={["1"]}
         items={items}
         className="h-screen"
+        onClick={handleNavigate}
       />
     </Sider>
   );
